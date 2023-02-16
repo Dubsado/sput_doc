@@ -1,0 +1,8 @@
+.Extra {
+	border: cyan dashed thick;
+	padding: 2rem;
+	margin: 0;
+	height: 100%;
+	grid-area: extra;
+	white-space: break-spaces;
+}

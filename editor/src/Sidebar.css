@@ -1,0 +1,5 @@
+.Sidebar {
+	border: purple dashed thick;
+	padding: 2rem;
+	grid-area: sidebar;
+}

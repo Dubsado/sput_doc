@@ -1,0 +1,30 @@
+.LayoutSidebar {
+	padding: 0.5rem;
+	display: grid;
+	gap: 1rem;
+	grid-template-areas:
+		'topbar'
+		'sidebar'
+		'content'
+		'extra';
+}
+
+@media (min-width: 666px) {
+	.LayoutSidebar {
+		padding: 1rem;
+		grid-template-columns: 3fr 1fr;
+		grid-template-areas:
+			'topbar   topbar'
+			'sidebar  sidebar'
+			'content  extra';
+	}
+}
+
+@media (min-width: 850px) {
+	.LayoutSidebar {
+		grid-template-columns: 2fr 4fr minmax(auto, 20rem);
+		grid-template-areas:
+			'topbar  topbar  topbar'
+			'sidebar content extra';
+	}
+}
