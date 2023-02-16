@@ -1,11 +1,5 @@
 # SPUT_DOC
 
-##### Table of Contents
-
-[Headers](#intro)  
-[Features](#features)  
-[Features](#admin)
-
 <a name="intro"/>
 ## Introduction
 
