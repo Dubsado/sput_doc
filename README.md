@@ -6,6 +6,8 @@ Maintaining documentation is a challenging endeavor. Yes, there are VS_Code exte
 
 ## Features
 
+YES, you absolutely edit markdown files directly. But then you lose the job of seeing how things end up getting formatted. Little things may be different once they get production deployment. Improving this environment will make editing and mantaining docs more fun making you more intelligent, you team more happy, and you WILL bring more value to the end user.
+
 ### Admin Dashboard
 
 This is where you can fire up with the web view of the file editor & file explorer.
