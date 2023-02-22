@@ -1,4 +1,5 @@
-import { readdir } from 'fs/promises'
+import { readdir, readFile } from 'fs/promises'
+import { safeLoadFront } from 'yaml-front-matter'
 
 /**
  * This function is intended to work recursively.
@@ -6,17 +7,23 @@ import { readdir } from 'fs/promises'
  * @returns an array of files by relative path
  */
 export async function getFilesList(dirName: string) {
-	const files: string[] = []
+	const files: File[] = []
 	const items = await readdir(dirName, { withFileTypes: true })
 
 	for (const item of items) {
 		if (item.isDirectory()) {
 			files.push(...(await getFilesList(`${dirName}/${item.name}`)))
 		} else {
-			files.push(`${dirName}/${item.name}`)
+			const path = `${dirName}/${item.name}`
+			const data = await readFile(path, { encoding: 'utf8' })
+			files.push({
+				path,
+				name: item.name,
+				data,
+				meta: safeLoadFront(data)
+			})
 		}
 	}
-
 	return files
 }
 
@@ -58,12 +65,12 @@ interface Filter {
 export async function getFilesRegex(dirName: string, filter: Filter) {
 	const files = (await getFilesList(dirName)).filter((file) => {
 		if (filter.exclude && filter.include) {
-			return !fileMatches(file, filter.exclude) && fileMatches(file, filter.include)
+			return !fileMatches(file.name, filter.exclude) && fileMatches(file.name, filter.include)
 		}
-		if (filter.include && fileMatches(file, filter.include)) {
+		if (filter.include && fileMatches(file.name, filter.include)) {
 			return true
 		}
-		if (filter.exclude && !fileMatches(file, filter.exclude)) {
+		if (filter.exclude && !fileMatches(file.name, filter.exclude)) {
 			return true
 		}
 		// since this function is only called when we're
@@ -71,6 +78,5 @@ export async function getFilesRegex(dirName: string, filter: Filter) {
 		// should be to not include the file
 		return false
 	})
-	console.log(dirName)
 	return files
 }
