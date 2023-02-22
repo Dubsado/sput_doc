@@ -1,5 +1,9 @@
 {
   "devDependencies": {
-    "@types/node": "^18.13.0"
+    "@types/node": "^18.13.0",
+    "@types/yaml-front-matter": "^4.1.0"
+  },
+  "dependencies": {
+    "yaml-front-matter": "^4.1.1"
   }
 }
