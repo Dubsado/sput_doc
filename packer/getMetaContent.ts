@@ -7,7 +7,12 @@ type SidebarMeta = {
 	linkTitle?: string
 	/** page title, also becomes the default sidebar link title for itself  */
 	title: string
+	/** determines where it is relatively place inside the sidebar
+	 *  this could be anything.
+	 */
+	indexSidebar: string
 }
+
 /**
  * Construct what the sidebar should look like based on the files
  * currently being passed in.

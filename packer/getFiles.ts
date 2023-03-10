@@ -12,7 +12,9 @@ export async function getFilesList(dirName: string) {
 
 	for (const item of items) {
 		if (item.isDirectory()) {
-			files.push(...(await getFilesList(`${dirName}/${item.name}`)))
+			// @todo this should be an option passed in IMHO
+			if (item.name !== 'node_modules')
+				files.push(...(await getFilesList(`${dirName}/${item.name}`)))
 		} else {
 			const path = `${dirName}/${item.name}`
 			const data = await readFile(path, { encoding: 'utf8' })
